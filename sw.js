@@ -1,5 +1,5 @@
 // Offline support: app files are precached; fonts are cached the first time they load.
-const VERSION = "gola-libera-v1";
+const VERSION = "gola-libera-v2";
 const APP_FILES = [
   "./",
   "index.html",

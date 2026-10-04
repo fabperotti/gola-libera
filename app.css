@@ -71,7 +71,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-v
 .phase span.now { background: var(--night); }
 
 /* exercise list */
-.ex-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.ex-list { list-style: none; margin: 0; padding: 0 16px; display: flex; flex-direction: column; }
 .ex-list li { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); }
 .ex-list li:first-child { border-top: 0; }
 .ex-list .name { font-weight: 700; }
@@ -119,7 +119,7 @@ details.ex .body { display: flex; flex-direction: column; gap: 8px; padding-top:
 /* diary chart */
 .chart { width: 100%; height: auto; display: block; }
 .chart text { fill: var(--muted); font-size: 10px; font-family: var(--font-body); }
-.nights { list-style: none; padding: 0; margin: 0; }
+.nights { list-style: none; padding: 0 16px; margin: 0; }
 .nights li { display: grid; grid-template-columns: 6.5rem 1fr; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.9rem; }
 .nights li:first-child { border-top: 0; }
 .nights .d { font-variant-numeric: tabular-nums; color: var(--muted); }
