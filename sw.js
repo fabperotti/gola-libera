@@ -1,10 +1,11 @@
 // Offline support: app files are precached; fonts are cached the first time they load.
-const VERSION = "gola-libera-v2";
+const VERSION = "gola-libera-v3";
 const APP_FILES = [
   "./",
   "index.html",
   "app.css",
   "app.js",
+  "anim.js",
   "manifest.webmanifest",
   "icons/icon.svg",
   "icons/icon-192.png",

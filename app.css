@@ -153,3 +153,29 @@ nav.tabs button[aria-selected="true"] { color: var(--accent); }
 .done-hero { text-align: center; padding-block: 40px 10px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
 
 @media (prefers-reduced-motion: reduce) { .ring-fg { transition: none; } }
+
+/* exercise animations (sagittal view) */
+:root { --a-bg: #E4ECEE; --a-skin: #EBCFBD; --a-skin-line: #B98F78; --a-air: #3A2A30; --a-nose: #5A4249; --a-tongue: #D5576D; --a-sp: #E98C9B; --a-bone: #F6F1E7; --a-bone-line: #CFC4AF; --a-arrow: #1C6B74; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --a-bg: #1A272C; --a-skin: #C9A592; --a-skin-line: #8D6A58; --a-arrow: #7FD0D8; } }
+:root[data-theme="dark"] { --a-bg: #1A272C; --a-skin: #C9A592; --a-skin-line: #8D6A58; --a-arrow: #7FD0D8; }
+.anim { background: var(--a-bg); border-radius: var(--r); overflow: hidden; }
+.anim svg { display: block; width: 100%; height: auto; max-height: 260px; }
+.a-mouth, .a-air { fill: var(--a-air); }
+.a-nose { fill: var(--a-nose); }
+.a-skin { fill: var(--a-skin); stroke: var(--a-skin-line); stroke-width: 1.5; stroke-linejoin: round; }
+.a-bone rect { fill: var(--a-bone); stroke: var(--a-bone-line); stroke-width: 1.5; }
+.a-palate-bone { fill: none; stroke: var(--a-bone); stroke-width: 6; stroke-linecap: round; }
+.a-jawbone { fill: var(--a-bone); stroke: var(--a-bone-line); stroke-width: 1.5; }
+.a-tooth { fill: var(--a-bone); stroke: var(--a-bone-line); stroke-width: 1; }
+.a-wall { fill: none; stroke: var(--a-sp); stroke-width: 5; stroke-linecap: round; }
+.a-tissue-line { fill: none; stroke: var(--a-sp); stroke-width: 4; stroke-linecap: round; }
+.a-cart { fill: none; stroke: var(--a-bone-line); stroke-width: 2; }
+.a-fold { stroke: var(--a-sp); stroke-width: 3; stroke-linecap: round; }
+.a-sp { fill: none; stroke: var(--a-sp); stroke-width: 9; stroke-linecap: round; }
+.a-tongue { fill: var(--a-tongue); stroke: #A93B52; stroke-width: 1.5; }
+.a-arrow { fill: none; stroke: var(--a-arrow); stroke-width: 2.5; stroke-dasharray: 5 4; stroke-linecap: round; marker-end: none; }
+.a-say { font-family: var(--font-display); font-weight: 700; font-size: 26px; fill: var(--a-arrow); }
+.anim-cap { font-size: 0.875rem; color: var(--muted); }
+.anim-player svg { max-height: 190px; }
+.ring-wrap.small { width: min(48vw, 180px); }
+.ring-wrap.small .ring-num { font-size: 2.6rem; }

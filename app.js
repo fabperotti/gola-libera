@@ -368,6 +368,7 @@ function renderEsercizi() {
       <section class="stack"><h2>${esc(label)}</h2><div class="panel" style="gap:0;padding-block:6px">
       ${EX.filter(e => e.area === a).map(e => `
         <details class="ex" id="ex-${e.id}"><summary>${esc(e.name)}</summary><div class="body">
+          ${window.GolaAnim?.has(e.id) ? `<div class="anim" data-anim="${e.id}"></div><p class="anim-cap">${esc(GolaAnim.caption(e.id))}</p>` : ""}
           <ol class="steps">${e.how.map(h => `<li>${esc(h)}</li>`).join("")}</ol>
           <p class="small muted">${esc(e.why)}</p>
           ${e.caution ? `<p class="small caution">${esc(e.caution)}</p>` : ""}
@@ -375,6 +376,11 @@ function renderEsercizi() {
         </div></details>`).join("")}
       </div></section>`).join("")}
     <div class="note"><strong>Da dove vengono</strong><span>Il nucleo viene dal protocollo di Guimarães e colleghi (2009), che in 3 mesi ha ridotto l'indice di apnea di circa il 40% in pazienti con apnea moderata. Una meta-analisi di Camacho (2015) ha trovato riduzioni medie dell'indice di apnea di circa il 50% negli adulti e del russamento. Gli esercizi vocali e di deglutizione vengono dalla logopedia.</span></div>`;
+  view.querySelectorAll("details.ex").forEach(d => d.addEventListener("toggle", () => {
+    const box = d.querySelector("[data-anim]"); if (!box) return;
+    if (d.open) box._anim = GolaAnim.mount(box, box.dataset.anim);
+    else { box._anim?.stop(); box.innerHTML = ""; }
+  }));
   renderSaveState();
 }
 
@@ -453,7 +459,7 @@ function segmentsFor(it) {
   return segs;
 }
 
-let P = null;
+let P = null, playerAnim = null;
 function startSession(plan, again) {
   const key = dkey(TODAY());
   const done = new Set(again ? [] : (state.sessions[key]?.done || []));
@@ -463,6 +469,7 @@ function startSession(plan, again) {
   lockScreen(); renderPlayer();
 }
 function closePlayer() {
+  playerAnim?.stop(); playerAnim = null;
   clearInterval(timer); timer = null; releaseScreen();
   player.hidden = true; document.body.style.overflow = ""; P = null; render();
 }
@@ -517,6 +524,7 @@ function renderPlayer() {
   if (!P) return;
   const total = P.plan.items.length;
   if (P.idx >= P.queue.length) {
+    playerAnim?.stop(); playerAnim = null;
     clearInterval(timer); timer = null; releaseScreen();
     const complete = P.plan.items.every(i => P.done.has(i.id));
     player.innerHTML = `<div class="wrap"><div class="done-hero">
@@ -534,7 +542,8 @@ function renderPlayer() {
     <div class="row" style="justify-content:space-between"><span class="eyebrow">Esercizio ${doneCount + (finished ? 0 : 1)} di ${total}</span><button class="ghost" id="p-exit">Esci</button></div>
     <div class="pbar">${P.plan.items.map(i => `<span class="${P.done.has(i.id) ? "on" : ""}"></span>`).join("")}</div>
     <div class="stack" style="gap:6px"><span class="chip" style="align-self:flex-start">${AREAS[ex.area]}</span><h1>${esc(ex.name)}</h1><p class="muted">${esc(it.label)}</p></div>
-    <div class="ring-wrap"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-bg" cx="50" cy="50" r="46" fill="none" stroke-width="6"></circle><circle class="ring-fg" cx="50" cy="50" r="46" fill="none" stroke-width="6" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${finished ? 0 : C}"></circle></svg>
+    ${window.GolaAnim?.has(ex.id) ? `<div class="anim anim-player" id="p-anim"></div>` : ""}
+    <div class="ring-wrap ${window.GolaAnim?.has(ex.id) ? "small" : ""}"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-bg" cx="50" cy="50" r="46" fill="none" stroke-width="6"></circle><circle class="ring-fg" cx="50" cy="50" r="46" fill="none" stroke-width="6" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${finished ? 0 : C}"></circle></svg>
       <div class="ring-center"><span class="ring-num">${finished ? "✓" : ""}</span><span class="ring-lbl">${finished ? "fatto" : ""}</span></div></div>
     <div class="controls">
       <button id="p-skip">Salta</button>
@@ -544,6 +553,8 @@ function renderPlayer() {
     <section class="panel"><ol class="steps">${ex.how.map(h => `<li>${esc(h)}</li>`).join("")}</ol>${ex.caution ? `<p class="small caution">${esc(ex.caution)}</p>` : ""}</section>
   </div>`;
   if (!finished) updateRing();
+  playerAnim?.stop(); playerAnim = null;
+  const animBox = $("#p-anim"); if (animBox) playerAnim = GolaAnim.mount(animBox, ex.id);
   $("#p-exit").onclick = closePlayer;
   $("#p-skip").onclick = () => { P.finishedEx = false; nextExercise(); };
   $("#p-done").onclick = async () => { if (!finished) await markDone(it.id); P.finishedEx = false; nextExercise(); };
