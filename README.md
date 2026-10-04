@@ -41,7 +41,7 @@ e apri `http://localhost:8000`. Dopo aver modificato i file, aumenta `VERSION` i
 | `index.html` | struttura della pagina |
 | `app.css` | stile, tema chiaro e scuro |
 | `app.js` | esercizi, motore del programma, timer, diario, salvataggio |
-| `anim.js` | animazioni degli esercizi (testa vista di lato) |
+| `anim.js` | animazioni dei 20 esercizi: sezione laterale di testa e collo, viso di fronte, figura sdraiata |
 | `sw.js` | service worker per l'uso offline |
 | `manifest.webmanifest`, `icons/` | dati per l'installazione |
 

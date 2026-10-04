@@ -154,28 +154,83 @@ nav.tabs button[aria-selected="true"] { color: var(--accent); }
 
 @media (prefers-reduced-motion: reduce) { .ring-fg { transition: none; } }
 
-/* exercise animations (sagittal view) */
-:root { --a-bg: #E4ECEE; --a-skin: #EBCFBD; --a-skin-line: #B98F78; --a-air: #3A2A30; --a-nose: #5A4249; --a-tongue: #D5576D; --a-sp: #E98C9B; --a-bone: #F6F1E7; --a-bone-line: #CFC4AF; --a-arrow: #1C6B74; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --a-bg: #1A272C; --a-skin: #C9A592; --a-skin-line: #8D6A58; --a-arrow: #7FD0D8; } }
-:root[data-theme="dark"] { --a-bg: #1A272C; --a-skin: #C9A592; --a-skin-line: #8D6A58; --a-arrow: #7FD0D8; }
+/* exercise animations */
+:root { --a-bg: #E6EDEF; --a-label: #22343B; --a-lead: #55676F; --a-accent: #1C6B74; --a-halo: #E6EDEF; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --a-bg: #1A262B; --a-label: #E3ECEE; --a-lead: #93A6AD; --a-accent: #7FD0D8; --a-halo: #1A262B; } }
+:root[data-theme="dark"] { --a-bg: #1A262B; --a-label: #E3ECEE; --a-lead: #93A6AD; --a-accent: #7FD0D8; --a-halo: #1A262B; }
 .anim { background: var(--a-bg); border-radius: var(--r); overflow: hidden; }
-.anim svg { display: block; width: 100%; height: auto; max-height: 260px; }
-.a-mouth, .a-air { fill: var(--a-air); }
-.a-nose { fill: var(--a-nose); }
-.a-skin { fill: var(--a-skin); stroke: var(--a-skin-line); stroke-width: 1.5; stroke-linejoin: round; }
-.a-bone rect { fill: var(--a-bone); stroke: var(--a-bone-line); stroke-width: 1.5; }
-.a-palate-bone { fill: none; stroke: var(--a-bone); stroke-width: 6; stroke-linecap: round; }
-.a-jawbone { fill: var(--a-bone); stroke: var(--a-bone-line); stroke-width: 1.5; }
-.a-tooth { fill: var(--a-bone); stroke: var(--a-bone-line); stroke-width: 1; }
-.a-wall { fill: none; stroke: var(--a-sp); stroke-width: 5; stroke-linecap: round; }
-.a-tissue-line { fill: none; stroke: var(--a-sp); stroke-width: 4; stroke-linecap: round; }
-.a-cart { fill: none; stroke: var(--a-bone-line); stroke-width: 2; }
-.a-fold { stroke: var(--a-sp); stroke-width: 3; stroke-linecap: round; }
-.a-sp { fill: none; stroke: var(--a-sp); stroke-width: 9; stroke-linecap: round; }
-.a-tongue { fill: var(--a-tongue); stroke: #A93B52; stroke-width: 1.5; }
-.a-arrow { fill: none; stroke: var(--a-arrow); stroke-width: 2.5; stroke-dasharray: 5 4; stroke-linecap: round; marker-end: none; }
-.a-say { font-family: var(--font-display); font-weight: 700; font-size: 26px; fill: var(--a-arrow); }
+.anim svg { display: block; width: 100%; height: auto; max-height: 340px; }
 .anim-cap { font-size: 0.875rem; color: var(--muted); }
-.anim-player svg { max-height: 190px; }
+.anim-player svg { max-height: 300px; }
+.anim-player .a-label:not(.on) { display: none; }
+.anim-player .a-labels text { font-size: 17px; }
+/* side section */
+.a-air { fill: #22161C; }
+.a-skull { fill: none; stroke: #F4ECDD; stroke-width: 12; stroke-linejoin: round; }
+.a-gyri path { fill: none; stroke: #D7B3AC; stroke-width: 2; stroke-linecap: round; }
+.a-cereb { fill: #E8CBC4; stroke: #D7B3AC; stroke-width: 1.5; }
+.a-cereb-l { fill: none; stroke: #D3ABA4; stroke-width: 1.5; }
+.a-cord { fill: #F2DCC4; stroke: #DCC1A4; stroke-width: 1.2; }
+.a-vert { fill: #F4ECDD; stroke: #D2C3A8; stroke-width: 1.4; }
+.a-disc { fill: #B9C3D6; }
+.a-sinus { fill: #3A2830; opacity: .55; }
+.a-turb { fill: #C9707F; stroke: #A9505F; stroke-width: 1; }
+.a-eso { fill: none; stroke: #C77786; stroke-width: 3; stroke-linecap: round; }
+.a-wall { fill: none; stroke: #D98593; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.a-bone { fill: #F6EFE2; stroke: #CDBEA2; stroke-width: 1.4; stroke-linejoin: round; }
+.a-cartf { fill: #DCE4EA; stroke: #9EAEBB; stroke-width: 1.3; stroke-linejoin: round; }
+.a-cart { fill: #DCE4EA; stroke: #9EAEBB; stroke-width: 1; }
+.a-fold { stroke: #E7A0AA; stroke-width: 3.5; stroke-linecap: round; }
+.a-sp { stroke: #B85C6C; stroke-width: 1.3; }
+.a-skin { fill: none; stroke: #B98068; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.a-lip { fill: #C7676E; }
+.a-tongue { stroke: #9C3A50; stroke-width: 1.6; }
+.a-fibers path { fill: none; stroke: #B44B62; stroke-width: 1.2; opacity: .35; }
+.a-tooth { fill: #FBF8F1; stroke: #CFC3AC; stroke-width: 1.2; stroke-linejoin: round; }
+.a-brush { stroke: #2F8F9A; stroke-width: 6; stroke-linecap: round; }
+.a-brushhead { fill: #2F8F9A; }
+.a-bristle { stroke: #F4F7F8; stroke-width: 2; stroke-linecap: round; }
+.a-spoon { fill: #C9D1D6; stroke: #8E9AA2; stroke-width: 1.2; }
+.a-spoon-h { fill: none; stroke: #A9B3BA; stroke-width: 4; stroke-linecap: round; }
+.a-water { stroke: #4F9CC8; stroke-width: 1.2; }
+.a-bubble { fill: #FFFFFF; opacity: .8; }
+.a-flow { fill: none; stroke: #6FC3E6; stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 7 9; }
+.a-waves path { fill: none; stroke: var(--a-accent); stroke-width: 2.5; stroke-linecap: round; }
+.a-labels text { font-family: var(--font-body); font-size: 12px; fill: var(--a-label); paint-order: stroke; stroke: var(--a-halo); stroke-width: 3px; stroke-linejoin: round; }
+.a-lead { fill: none; stroke: var(--a-lead); stroke-width: 0.8; opacity: .8; }
+.a-dot { fill: var(--a-lead); }
+.a-label.on text { font-weight: 700; fill: var(--a-accent); }
+.a-label.on .a-lead { stroke: var(--a-accent); stroke-width: 1.3; opacity: 1; }
+.a-label.on .a-dot { fill: var(--a-accent); }
+.a-arrow { fill: none; stroke: var(--a-accent); stroke-width: 2.6; stroke-dasharray: 5 4; stroke-linecap: round; }
+.a-arrowhead { fill: var(--a-accent); }
+.a-say { font-family: var(--font-display); font-weight: 700; font-size: 26px; fill: var(--a-accent); paint-order: stroke; stroke: var(--a-halo); stroke-width: 4px; }
+/* front view */
+.a-skin-f { stroke: #C2917A; stroke-width: 1.6; }
+.a-hair { fill: #4E3B2F; }
+.a-brow { fill: none; stroke: #5A4334; stroke-width: 4.5; stroke-linecap: round; }
+.a-eyew { fill: #FBF8F4; }
+.a-iris { fill: #5B7F86; }
+.a-pupil { fill: #1D1A19; }
+.a-lid { fill: none; stroke: #6B4A3C; stroke-width: 2.2; stroke-linecap: round; }
+.a-nose { fill: none; stroke: #BE8A73; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.a-nostril { fill: #8F5A4B; }
+.a-fold-f, .a-philtrum, .a-chin { fill: none; stroke: #C58F78; stroke-width: 1.8; stroke-linecap: round; }
+.a-finger { fill: #E7BBA2; stroke: #B98068; stroke-width: 1.6; }
+.a-mouth-f { fill: #4A2328; }
+.a-lipline { fill: none; stroke: #7E3A42; stroke-width: 1.6; stroke-linecap: round; }
+.a-wrinkle path { fill: none; stroke: #B5806A; stroke-width: 1.4; stroke-linecap: round; }
+.a-balloon-neck { fill: #B83A44; }
+.a-balloon-hi { fill: #FFFFFF; opacity: .45; }
+.a-nflow path { fill: none; stroke: #4FAED6; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 4 4; }
+.a-musc { fill: none; stroke: rgba(208, 71, 93, .4); stroke-width: 9; stroke-linecap: round; }
+.a-say-s { font-size: 18px; }
+.a-musc-fill { fill: #D0475D; opacity: .32; }
+/* lying view */
+.a-mat { fill: #7FA7B0; opacity: .55; }
+.a-shirt { fill: #3F6E7A; }
+.a-shirt-d { fill: #2F5A65; }
+.a-ear { fill: #E2B39A; stroke: #B98068; stroke-width: 1.2; }
+.a-gaze { fill: none; stroke: var(--a-accent); stroke-width: 1.8; stroke-dasharray: 4 5; }
 .ring-wrap.small { width: min(48vw, 180px); }
 .ring-wrap.small .ring-num { font-size: 2.6rem; }
